@@ -70,6 +70,21 @@ describe('Kii Gateway Agent', function () {
             expect(result).to.be(204);
         });
     });
+    describe('.updateEndnodeConnectivity()', function () {
+        var result;
+        beforeEach(function (done) {
+            gatewayAgent.updateEndnodeConnectivity('L_tj-jtSjDNYj1mRtJFKBD3eA5_x68AiFYQswS35TlA', // owner token
+            'th.7c698b427320-f689-6e11-06dd-0d68ad02', // endnode vendorThingID
+            true //online
+            ).then(function (chainOutput) {
+                result = chainOutput;
+                done();
+            });
+        });
+        it('should update endnode connection status', function () {
+            expect(result).to.be(204);
+        });
+    });
     describe('.detectEndnodeOnboardingStatus()', function () {
         var donkey;
         var notExistingDonkey;

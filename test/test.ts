@@ -78,6 +78,23 @@ describe('Kii Gateway Agent', () => {
 		})
 	});
 
+	describe('.updateEndnodeConnectivity()', () => {
+		let result
+		beforeEach(done => {
+			gatewayAgent.updateEndnodeConnectivity(
+				'L_tj-jtSjDNYj1mRtJFKBD3eA5_x68AiFYQswS35TlA', // owner token
+				'th.7c698b427320-f689-6e11-06dd-0d68ad02', // endnode vendorThingID
+				true //online
+			).then(chainOutput => {
+				result = chainOutput
+				done()
+			})
+		})
+		it('should update endnode connection status', () => {
+			expect(result).to.be(204);
+		})
+	});
+
 	describe('.detectEndnodeOnboardingStatus()', () => {
 		let donkey;
 		let notExistingDonkey;

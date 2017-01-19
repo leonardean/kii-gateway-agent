@@ -108,8 +108,30 @@ function updateEndnodeState(ownerToken, endNodeThingID, states) {
     return deferred.promise;
 }
 exports.updateEndnodeState = updateEndnodeState;
-// update endnode connectivity
-function updateEndnodeConnectivity(thingID, connected) {
+// TODO update endnode connectivity
+function updateEndnodeConnectivity(ownerToken, endNodeThingID, online) {
+    var gatewayThingID = db.get('gateway.thingID');
+    var deferred = Q.defer();
+    var options = {
+        method: 'PUT',
+        url: exports.site + ("/thing-if/apps/" + exports.appID + "/things/" + gatewayThingID + "/end-nodes/" + endNodeThingID + "/connection"),
+        headers: {
+            'Authorization': 'Bearer ' + ownerToken,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            'online': online
+        })
+    };
+    console.log(options);
+    request(options, function (error, response, body) {
+        if (error)
+            deferred.reject(new Error(error));
+        if (response.statusCode !== 204)
+            deferred.reject(body);
+        deferred.resolve(response.statusCode);
+    });
+    return deferred.promise;
 }
 exports.updateEndnodeConnectivity = updateEndnodeConnectivity;
 // retrive endnode onboarding status

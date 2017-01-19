@@ -115,9 +115,27 @@ export function updateEndnodeState(ownerToken, endNodeThingID, states) {
     return deferred.promise
 }
 
-// update endnode connectivity
-export function updateEndnodeConnectivity(thingID, connected) {
-
+// TODO update endnode connectivity
+export function updateEndnodeConnectivity(ownerToken: string, endNodeThingID: string, online: boolean) {
+    let gatewayThingID = db.get('gateway.thingID')
+    let deferred = Q.defer()
+    let options = {
+        method: 'PUT',
+        url: site + `/thing-if/apps/${appID}/things/${gatewayThingID}/end-nodes/${endNodeThingID}/connection`,
+        headers: {
+            'Authorization': 'Bearer ' + ownerToken,
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify({
+            'online': online
+        })
+    };
+    request(options, function (error, response, body) {
+        if (error) deferred.reject(new Error(error));
+        if (response.statusCode !== 204) deferred.reject(body);
+        deferred.resolve(response.statusCode);
+    });
+    return deferred.promise
 }
 
 // retrive endnode onboarding status
