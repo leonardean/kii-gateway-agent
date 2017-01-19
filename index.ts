@@ -38,7 +38,7 @@ export function onboardGatewayByOwner(ownerToken, ownerID, vendorThingID, passwo
         })
     };
 
-    request(options, function (error, response, body) {
+    request(options, (error, response, body) => {
         if (error) deferred.reject(new Error(error))
 
         db.set('gateway.vendorThingID', vendorThingID).value()
@@ -74,7 +74,7 @@ export function onboardEndnodeByOwner(ownerToken, ownerID, endNodeVendorThingID,
         })
     }
 
-    request(options, function (error, response, body) {
+    request(options, (error, response, body) => {
         if (error) deferred.reject(new Error(error))
 
         if (db.get('endNodes').find({ 'vendorThingID': endNodeVendorThingID }).value())
@@ -102,12 +102,12 @@ export function updateEndnodeState(ownerToken, endNodeThingID, states) {
         method: 'PUT',
         url: site + `/thing-if/apps/${appID}/targets/thing:${endNodeThingID}/states`,
         headers: {
-            'Authorization': 'Bearer ' + ownerToken,
+            authorization: 'Bearer ' + ownerToken,
             'content-type': 'application/json'
         },
         body: JSON.stringify(states)
     }
-    request(options, function (error, response, body) {
+    request(options, (error, response, body) => {
         if (error) deferred.reject(new Error(error));
         if (response.statusCode !== 204) deferred.reject(body);
         deferred.resolve(response.statusCode);
@@ -123,14 +123,14 @@ export function updateEndnodeConnectivity(ownerToken: string, endNodeThingID: st
         method: 'PUT',
         url: site + `/thing-if/apps/${appID}/things/${gatewayThingID}/end-nodes/${endNodeThingID}/connection`,
         headers: {
-            'Authorization': 'Bearer ' + ownerToken,
+            authorization: 'Bearer ' + ownerToken,
             'content-type': 'application/json'
         },
         body: JSON.stringify({
             'online': online
         })
     };
-    request(options, function (error, response, body) {
+    request(options, (error, response, body) => {
         if (error) deferred.reject(new Error(error));
         if (response.statusCode !== 204) deferred.reject(body);
         deferred.resolve(response.statusCode);
@@ -158,22 +158,22 @@ export function startCommandReceiver(chainInput) {
     }
     console.log(mqttEndpoint)
     let client = mqtt.connect('tcp://' + mqttEndpoint.host, option);
-    client.on('connect', function (connack) {
+    client.on('connect', connack => {
         if (!connack.sessionPresent) {
             client.subscribe(mqttEndpoint.mqttTopic, {
                 qos: 0,
                 retain: false
-            }, function (err, granted) {
+            }, (err, granted) => {
                 if (err) deferred.reject(err)
             });
         } else {
             throw new Error('error connecting to MQTT broker')
         }
     })
-    client.on('error', function (error) {
+    client.on('error', error => {
         throw new Error(error)
     })
-    client.on('message', function (topic, message, packet) {
+    client.on('message', (topic, message, packet) => {
         let i, messageStr = '';
         for (i = 0; i < message.length; i++) {
             messageStr += '%' + ('0' + message[i].toString(16)).slice(-2);
@@ -186,5 +186,3 @@ export function startCommandReceiver(chainInput) {
 export function setOnCommandMessage(messageHandler) {
     this.messageHandler = messageHandler
 }
-
-

@@ -93,7 +93,7 @@ function updateEndnodeState(ownerToken, endNodeThingID, states) {
         method: 'PUT',
         url: exports.site + ("/thing-if/apps/" + exports.appID + "/targets/thing:" + endNodeThingID + "/states"),
         headers: {
-            'Authorization': 'Bearer ' + ownerToken,
+            authorization: 'Bearer ' + ownerToken,
             'content-type': 'application/json'
         },
         body: JSON.stringify(states)
@@ -116,14 +116,13 @@ function updateEndnodeConnectivity(ownerToken, endNodeThingID, online) {
         method: 'PUT',
         url: exports.site + ("/thing-if/apps/" + exports.appID + "/things/" + gatewayThingID + "/end-nodes/" + endNodeThingID + "/connection"),
         headers: {
-            'Authorization': 'Bearer ' + ownerToken,
+            authorization: 'Bearer ' + ownerToken,
             'content-type': 'application/json'
         },
         body: JSON.stringify({
             'online': online
         })
     };
-    console.log(options);
     request(options, function (error, response, body) {
         if (error)
             deferred.reject(new Error(error));
@@ -141,6 +140,7 @@ function detectEndnodeOnboardingStatus(endNodeVendorThingID) {
 exports.detectEndnodeOnboardingStatus = detectEndnodeOnboardingStatus;
 // mqtt
 function startCommandReceiver(chainInput) {
+    var _this = this;
     var deferred = Q.defer();
     var gatewayInfo = chainInput.gatewayInfo;
     var mqttEndpoint = gatewayInfo.mqttEndpoint;
@@ -177,7 +177,7 @@ function startCommandReceiver(chainInput) {
             messageStr += '%' + ('0' + message[i].toString(16)).slice(-2);
         }
         messageStr = decodeURIComponent(messageStr);
-        this.messageHandler(messageStr);
+        _this.messageHandler(messageStr);
     });
 }
 exports.startCommandReceiver = startCommandReceiver;
