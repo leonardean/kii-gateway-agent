@@ -1,0 +1,30 @@
+{
+  "name": "kii-gateway-agent",
+  "version": "0.0.1",
+  "description": "a nodejs kii gateway agent module",
+  "main": "index.js",
+  "dependencies": {
+    "expect.js": "0.3.1",
+    "lowdb": "0.14.0",
+    "mocha": "3.2.0",
+    "mqtt": "2.2.1",
+    "q": "1.4.1",
+    "request": "2.79.0"
+  },
+  "scripts": {
+    "test": "./node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leonardean/kii-gateway-agent.git"
+  },
+  "keywords": [
+    "kii"
+  ],
+  "author": "leon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leonardean/kii-gateway-agent/issues"
+  },
+  "homepage": "https://github.com/leonardean/kii-gateway-agent#readme"
+}

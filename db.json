@@ -1,0 +1,24 @@
+{
+  "gateway": {
+    "vendorThingID": "BABY5",
+    "thingID": "th.7c698b427320-f689-6e11-b4dd-0cd49ec9",
+    "accessToken": "MgZcB80WPUICrooGIMVl5dtvBGEXjI_tmHDJcfEH6WQ"
+  },
+  "endNodes": [
+    {
+      "vendorThingID": "Donkey",
+      "accessToken": "7UZTp8EAyElphcfpxhgRo5IvlvBDT5GiyxdLY4RfVy4",
+      "endNodeThingID": "th.7c698b427320-f689-6e11-06dd-0d68ad02"
+    },
+    {
+      "vendorThingID": "Donkey2",
+      "accessToken": "xc13KnMF0iwazNEuvvr68Lyqcn7dPxlnCBZUIc2sKuI",
+      "endNodeThingID": "th.7c698b427320-f689-6e11-1edd-0ca386bd"
+    }
+  ],
+  "app": {
+    "appID": "f1e14d7c",
+    "appKey": "b5727ac2e89ff44268fd628c12da7d61",
+    "site": "https://api-sg.kii.com"
+  }
+}
