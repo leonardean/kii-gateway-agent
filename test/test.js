@@ -48,4 +48,17 @@ describe('Kii Gateway Agent', function () {
             expect(result.endNodeThingID).to.be('th.7c698b427320-f689-6e11-06dd-0d68ad02');
         });
     });
+    describe('.detectEndnodeOnboardingStatus()', function () {
+        var donkey;
+        var notExistingDonkey;
+        beforeEach(function (done) {
+            donkey = gatewayAgent.detectEndnodeOnboardingStatus('Donkey');
+            notExistingDonkey = gatewayAgent.detectEndnodeOnboardingStatus('notExistingDonkey');
+            done();
+        });
+        it('should return if endnode is onboarding or not', function () {
+            expect(donkey).to.be(true);
+            expect(notExistingDonkey).to.be(false);
+        });
+    });
 });
