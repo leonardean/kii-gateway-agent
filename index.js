@@ -91,7 +91,7 @@ function updateEndnodeState(ownerToken, endNodeThingID, states) {
     var deferred = Q.defer();
     var options = {
         method: 'PUT',
-        url: exports.site + ("/thing-if/apps/" + exports.appID + "/target/thing:" + endNodeThingID + "/states"),
+        url: exports.site + ("/thing-if/apps/" + exports.appID + "/targets/thing:" + endNodeThingID + "/states"),
         headers: {
             'Authorization': 'Bearer ' + ownerToken,
             'content-type': 'application/json'
@@ -99,12 +99,11 @@ function updateEndnodeState(ownerToken, endNodeThingID, states) {
         body: JSON.stringify(states)
     };
     request(options, function (error, response, body) {
-        // console.log(error);
-        //  console.log(response);
-        //  console.log(body);
         if (error)
             deferred.reject(new Error(error));
-        deferred.resolve(JSON.parse(body));
+        if (response.statusCode !== 204)
+            deferred.reject(body);
+        deferred.resolve(response.statusCode);
     });
     return deferred.promise;
 }

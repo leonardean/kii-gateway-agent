@@ -48,6 +48,28 @@ describe('Kii Gateway Agent', function () {
             expect(result.endNodeThingID).to.be('th.7c698b427320-f689-6e11-06dd-0d68ad02');
         });
     });
+    describe('.updateEndnodeState()', function () {
+        var result;
+        beforeEach(function (done) {
+            gatewayAgent.updateEndnodeState('L_tj-jtSjDNYj1mRtJFKBD3eA5_x68AiFYQswS35TlA', // owner token
+            'th.7c698b427320-f689-6e11-06dd-0d68ad02', // endnode vendorThingID
+            {
+                'batteryAlias': {
+                    'power': true
+                },
+                'lampAlias': {
+                    'power': true
+                }
+            } // endnode states
+            ).then(function (chainOutput) {
+                result = chainOutput;
+                done();
+            });
+        });
+        it('should update endnode states', function () {
+            expect(result).to.be(204);
+        });
+    });
     describe('.detectEndnodeOnboardingStatus()', function () {
         var donkey;
         var notExistingDonkey;
