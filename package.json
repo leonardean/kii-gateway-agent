@@ -6,13 +6,13 @@
   "dependencies": {
     "expect.js": "0.3.1",
     "lowdb": "0.14.0",
-    "mocha": "3.2.0",
     "mqtt": "2.2.1",
     "q": "1.4.1",
     "request": "2.79.0"
   },
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha"
+    "pretest": "tsc test/*test.ts --module commonjs",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -26,5 +26,9 @@
   "bugs": {
     "url": "https://github.com/leonardean/kii-gateway-agent/issues"
   },
-  "homepage": "https://github.com/leonardean/kii-gateway-agent#readme"
+  "homepage": "https://github.com/leonardean/kii-gateway-agent#readme",
+  "devDependencies": {
+    "@types/mocha": "^2.2.38",
+    "mocha": "^3.2.0"
+  }
 }
