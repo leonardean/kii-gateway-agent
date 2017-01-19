@@ -1,13 +1,8 @@
 "use strict";
 var expect = require("expect.js");
-// import gatewayAgent = require('../index')
-var index_1 = require("../index");
+var gatewayAgent = require("../index");
 describe('Kii Gateway Agent', function () {
-    var gatewayAgent;
     describe('.init()', function () {
-        beforeEach(function () {
-            gatewayAgent = new index_1["default"]();
-        });
         it('should set appID, appKey, site', function (done) {
             gatewayAgent.init('f1e14d7c', 'b5727ac2e89ff44268fd628c12da7d61', 'https://api-sg.kii.com');
             expect(gatewayAgent.appID).to.be('f1e14d7c');

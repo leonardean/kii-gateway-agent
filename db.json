@@ -2,12 +2,12 @@
   "gateway": {
     "vendorThingID": "BABY5",
     "thingID": "th.7c698b427320-f689-6e11-b4dd-0cd49ec9",
-    "accessToken": "U2XyVxL0rHzwzmNADpUUz26ApQTa59zKJ_9dEU0YA2U"
+    "accessToken": "bbYbQ7pEDdedt-cQkeDEYzaWpKd1_m8-A9AJrGBafxU"
   },
   "endNodes": [
     {
       "vendorThingID": "Donkey",
-      "accessToken": "2mlWc0DyOHsy2IvDrR6r7Pe5NBaRuIhZ_3t-_XcKkX4",
+      "accessToken": "VzRFM2YANgRmRaP7tRRdXk9I-bvdASNDRCw2gYRZPjM",
       "endNodeThingID": "th.7c698b427320-f689-6e11-06dd-0d68ad02"
     },
     {

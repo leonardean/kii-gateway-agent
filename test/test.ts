@@ -1,16 +1,9 @@
 import expect = require('expect.js');
 import request = require('request');
-// import gatewayAgent = require('../index')
-import GatewayAgent from '../index';
-import * as mocha from 'mocha';
+import gatewayAgent = require('../index');
 
 describe('Kii Gateway Agent', function () {
-	let gatewayAgent: GatewayAgent;
-
 	describe('.init()', function () {
-		beforeEach(function () {
-			gatewayAgent = new GatewayAgent();
-		});
 		it('should set appID, appKey, site', function (done) {
 			gatewayAgent.init('f1e14d7c', 'b5727ac2e89ff44268fd628c12da7d61', 'https://api-sg.kii.com')
 			expect(gatewayAgent.appID).to.be('f1e14d7c')

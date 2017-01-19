@@ -5,8 +5,12 @@
         "noImplicitAny": false,
         "sourceMap": false,
         "experimentalDecorators": true,
+        "declaration": true,
         "typeRoots": [
             "../node_modules/@types"
         ]
-    }
+    },
+    "files": [
+        "./index.ts"
+    ]
 }
