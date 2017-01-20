@@ -1,7 +1,6 @@
 "use strict";
 var expect = require("expect.js");
-// import gatewayAgent = require('../lib/index');
-var index_1 = require("../lib/index");
+var gatewayAgent = require("../lib/index");
 var appID = 'f1e14d7c';
 var appKey = 'b5727ac2e89ff44268fd628c12da7d61';
 var site = 'https://api-sg.kii.com';
@@ -10,17 +9,17 @@ var ownerID = 'ba28b2d34b60-270b-6e11-e3dd-0240f4e2';
 describe('Kii Gateway Agent', function () {
     describe('.init()', function () {
         it('should set appID, appKey, site', function (done) {
-            index_1.gatewayAgent.init(appID, appKey, site);
-            expect(index_1.gatewayAgent.appID).to.be(appID);
-            expect(index_1.gatewayAgent.appKey).to.be(appKey);
-            expect(index_1.gatewayAgent.site).to.be(site);
+            gatewayAgent.init(appID, appKey, site);
+            expect(gatewayAgent.appID).to.be(appID);
+            expect(gatewayAgent.appKey).to.be(appKey);
+            expect(gatewayAgent.site).to.be(site);
             done();
         });
     });
     describe('.onboardGatewayByOwner()', function () {
         var result;
         beforeEach(function (done) {
-            index_1.gatewayAgent.onboardGatewayByOwner(ownerToken, // owner token
+            gatewayAgent.onboardGatewayByOwner(ownerToken, // owner token
             ownerID, //owner userid
             'BABY5', //gateway vendorThingID
             '123123', //gateway password
@@ -39,7 +38,7 @@ describe('Kii Gateway Agent', function () {
     describe('.onboardEndnodeByOwner()', function () {
         var result;
         beforeEach(function (done) {
-            index_1.gatewayAgent.onboardEndnodeByOwner(ownerToken, // owner token
+            gatewayAgent.onboardEndnodeByOwner(ownerToken, // owner token
             ownerID, //owner userid
             'Donkey', // endnode vendorThingID
             '123123', // endnode password
@@ -57,7 +56,7 @@ describe('Kii Gateway Agent', function () {
     describe('.updateEndnodeState()', function () {
         var result;
         beforeEach(function (done) {
-            index_1.gatewayAgent.updateEndnodeState(ownerToken, // owner token
+            gatewayAgent.updateEndnodeState(ownerToken, // owner token
             'th.7c698b427320-f689-6e11-06dd-0d68ad02', // endnode vendorThingID
             {
                 'batteryAlias': {
@@ -79,7 +78,7 @@ describe('Kii Gateway Agent', function () {
     describe('.updateEndnodeConnectivity()', function () {
         var result;
         beforeEach(function (done) {
-            index_1.gatewayAgent.updateEndnodeConnectivity(ownerToken, // owner token
+            gatewayAgent.updateEndnodeConnectivity(ownerToken, // owner token
             'th.7c698b427320-f689-6e11-06dd-0d68ad02', // endnode vendorThingID
             true //online
             ).then(function (chainOutput) {
@@ -95,8 +94,8 @@ describe('Kii Gateway Agent', function () {
         var donkey;
         var notExistingDonkey;
         beforeEach(function (done) {
-            donkey = index_1.gatewayAgent.detectEndnodeOnboardingStatus('Donkey');
-            notExistingDonkey = index_1.gatewayAgent.detectEndnodeOnboardingStatus('notExistingDonkey');
+            donkey = gatewayAgent.detectEndnodeOnboardingStatus('Donkey');
+            notExistingDonkey = gatewayAgent.detectEndnodeOnboardingStatus('notExistingDonkey');
             done();
         });
         it('should return if endnode is onboarding or not', function () {
