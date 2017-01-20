@@ -6,7 +6,7 @@
         "sourceMap": false,
         "experimentalDecorators": true,
         "declaration": true,
-        "outDir": "js/",
+        "outDir": "lib/",
         "typeRoots": [
             "../node_modules/@types"
         ]
