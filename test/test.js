@@ -1,6 +1,6 @@
 "use strict";
 var expect = require("expect.js");
-var gatewayAgent = require("../index");
+var gatewayAgent = require("../js/index");
 describe('Kii Gateway Agent', function () {
     describe('.init()', function () {
         it('should set appID, appKey, site', function (done) {

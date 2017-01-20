@@ -11,7 +11,7 @@
     "request": "2.79.0"
   },
   "scripts": {
-    "pretest": "tsc test/*test.ts --module commonjs",
+    "pretest": "tsc && tsc test/*test.ts --module commonjs",
     "test": "mocha"
   },
   "repository": {

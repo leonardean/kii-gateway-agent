@@ -1,6 +1,6 @@
 import expect = require('expect.js');
 import request = require('request');
-import gatewayAgent = require('../index');
+import gatewayAgent = require('../js/index');
 
 describe('Kii Gateway Agent', () => {
 	describe('.init()', () => {
