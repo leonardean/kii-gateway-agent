@@ -1,6 +1,7 @@
 import expect = require('expect.js');
 import request = require('request');
-import gatewayAgent = require('../lib/index');
+// import gatewayAgent = require('../lib/index');
+import { gatewayAgent } from '../lib/index';
 
 const appID = 'f1e14d7c';
 const appKey = 'b5727ac2e89ff44268fd628c12da7d61';
