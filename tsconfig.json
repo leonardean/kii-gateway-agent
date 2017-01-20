@@ -6,11 +6,12 @@
         "sourceMap": false,
         "experimentalDecorators": true,
         "declaration": true,
+        "outDir": "lib/",
         "typeRoots": [
             "../node_modules/@types"
         ]
     },
     "files": [
-        "./index.ts"
+        "./src/index.ts"
     ]
 }

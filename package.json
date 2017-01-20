@@ -1,8 +1,9 @@
 {
   "name": "kii-gateway-agent",
-  "version": "0.0.1",
+  "version": "0.0.8",
+  "private": false,
   "description": "a nodejs kii gateway agent module",
-  "main": "index.js",
+  "main": "lib/index.js",
   "dependencies": {
     "expect.js": "0.3.1",
     "lowdb": "0.14.0",
@@ -11,7 +12,7 @@
     "request": "2.79.0"
   },
   "scripts": {
-    "pretest": "tsc test/*test.ts --module commonjs",
+    "pretest": "tsc && tsc test/*test.ts --module commonjs",
     "test": "mocha"
   },
   "repository": {
@@ -31,5 +32,8 @@
     "@types/mocha": "^2.2.38",
     "mocha": "^3.2.0",
     "typescript": "^2.1.5"
+  },
+  "directories": {
+    "test": "test"
   }
 }

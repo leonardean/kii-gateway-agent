@@ -2,7 +2,7 @@ import request = require('request');
 import mqtt = require('mqtt');
 import Q = require('q');
 import low = require('lowdb');
-const db = new low('db.json');
+const db = new low('resource/db.json');
 
 export let appID: string;
 export let appKey: string;
@@ -55,7 +55,7 @@ export function onboardGatewayByOwner(ownerToken, ownerID, vendorThingID, passwo
 
 // onboard endnode with gateway by owner
 export function onboardEndnodeByOwner(ownerToken, ownerID, endNodeVendorThingID, endNodePassword, type, properties) {
-    let gatewayThingID = db.get('gateway.thingID')
+    let gatewayThingID = db.get('gateway.thingID').value();
     let deferred = Q.defer()
     let options = {
         method: 'POST',
@@ -117,7 +117,7 @@ export function updateEndnodeState(ownerToken, endNodeThingID, states) {
 
 // TODO update endnode connectivity
 export function updateEndnodeConnectivity(ownerToken: string, endNodeThingID: string, online: boolean) {
-    let gatewayThingID = db.get('gateway.thingID')
+    let gatewayThingID = db.get('gateway.thingID').value();
     let deferred = Q.defer()
     let options = {
         method: 'PUT',

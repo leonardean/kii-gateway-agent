@@ -1,14 +1,20 @@
 import expect = require('expect.js');
 import request = require('request');
-import gatewayAgent = require('../index');
+import gatewayAgent = require('../lib/index');
+
+const appID = 'f1e14d7c';
+const appKey = 'b5727ac2e89ff44268fd628c12da7d61';
+const site = 'https://api-sg.kii.com';
+const ownerToken = 'L_tj-jtSjDNYj1mRtJFKBD3eA5_x68AiFYQswS35TlA';
+const ownerID = 'ba28b2d34b60-270b-6e11-e3dd-0240f4e2';
 
 describe('Kii Gateway Agent', () => {
 	describe('.init()', () => {
 		it('should set appID, appKey, site', done => {
-			gatewayAgent.init('f1e14d7c', 'b5727ac2e89ff44268fd628c12da7d61', 'https://api-sg.kii.com')
-			expect(gatewayAgent.appID).to.be('f1e14d7c')
-			expect(gatewayAgent.appKey).to.be('b5727ac2e89ff44268fd628c12da7d61')
-			expect(gatewayAgent.site).to.be('https://api-sg.kii.com')
+			gatewayAgent.init(appID, appKey, site);
+			expect(gatewayAgent.appID).to.be(appID);
+			expect(gatewayAgent.appKey).to.be(appKey);
+			expect(gatewayAgent.site).to.be(site);
 			done();
 		})
 	});
@@ -17,8 +23,8 @@ describe('Kii Gateway Agent', () => {
 		let result
 		beforeEach(done => {
 			gatewayAgent.onboardGatewayByOwner(
-				'L_tj-jtSjDNYj1mRtJFKBD3eA5_x68AiFYQswS35TlA', // owner token
-				'ba28b2d34b60-270b-6e11-e3dd-0240f4e2', //owner userid
+				ownerToken, // owner token
+				ownerID, //owner userid
 				'BABY5', //gateway vendorThingID
 				'123123', //gateway password
 				'toy', // thing type
@@ -38,8 +44,8 @@ describe('Kii Gateway Agent', () => {
 		let result
 		beforeEach(done => {
 			gatewayAgent.onboardEndnodeByOwner(
-				'L_tj-jtSjDNYj1mRtJFKBD3eA5_x68AiFYQswS35TlA', // owner token
-				'ba28b2d34b60-270b-6e11-e3dd-0240f4e2', //owner userid
+				ownerToken, // owner token
+				ownerID, //owner userid
 				'Donkey', // endnode vendorThingID
 				'123123', // endnode password
 				'toy', // endnode type
@@ -58,7 +64,7 @@ describe('Kii Gateway Agent', () => {
 		let result
 		beforeEach(done => {
 			gatewayAgent.updateEndnodeState(
-				'L_tj-jtSjDNYj1mRtJFKBD3eA5_x68AiFYQswS35TlA', // owner token
+				ownerToken, // owner token
 				'th.7c698b427320-f689-6e11-06dd-0d68ad02', // endnode vendorThingID
 				{
 					'batteryAlias': {
@@ -82,7 +88,7 @@ describe('Kii Gateway Agent', () => {
 		let result
 		beforeEach(done => {
 			gatewayAgent.updateEndnodeConnectivity(
-				'L_tj-jtSjDNYj1mRtJFKBD3eA5_x68AiFYQswS35TlA', // owner token
+				ownerToken, // owner token
 				'th.7c698b427320-f689-6e11-06dd-0d68ad02', // endnode vendorThingID
 				true //online
 			).then(chainOutput => {
