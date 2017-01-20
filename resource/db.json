@@ -1,13 +1,18 @@
 {
+  "app": {
+    "appID": "f1e14d7c",
+    "appKey": "b5727ac2e89ff44268fd628c12da7d61",
+    "site": "https://api-sg.kii.com"
+  },
   "gateway": {
     "vendorThingID": "BABY5",
     "thingID": "th.7c698b427320-f689-6e11-b4dd-0cd49ec9",
-    "accessToken": "7lnpfEHD_QEhn3q9_hU3AGpGbYfL51D0JJlUjOHyZn8"
+    "accessToken": "G_di7Xi63Pu885nKpmB1NdYyI4bkuD8wBED_AIBcw-c"
   },
   "endNodes": [
     {
       "vendorThingID": "Donkey",
-      "accessToken": "TMtQzaz1zUo5x0BxH_vo0lhL630scELw04ULNo1Qy5w",
+      "accessToken": "8k9hthlFuIdTBRwj2sqXqI0Vxn-CsWKDw9pkk4S4kbA",
       "endNodeThingID": "th.7c698b427320-f689-6e11-06dd-0d68ad02"
     },
     {
@@ -15,10 +20,5 @@
       "accessToken": "xc13KnMF0iwazNEuvvr68Lyqcn7dPxlnCBZUIc2sKuI",
       "endNodeThingID": "th.7c698b427320-f689-6e11-1edd-0ca386bd"
     }
-  ],
-  "app": {
-    "appID": "f1e14d7c",
-    "appKey": "b5727ac2e89ff44268fd628c12da7d61",
-    "site": "https://api-sg.kii.com"
-  }
+  ]
 }

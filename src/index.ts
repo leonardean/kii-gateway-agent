@@ -11,6 +11,7 @@ let messageHandler;
 
 // kii init
 export function init(_appID, _appKey, _site) {
+    db.defaults({ app: {}, gateway: {}, endNodes: [] }).value();
     appID = _appID;
     appKey = _appKey;
     site = _site;
@@ -83,12 +84,14 @@ export function onboardEndnodeByOwner(ownerToken, ownerID, endNodeVendorThingID,
                 accessToken: JSON.parse(body).accessToken,
                 endNodeThingID: JSON.parse(body).endNodeThingID
             }).value()
-        else
+        else {
+            if (!db.has('endNodes').value()) db.set('endNodes', []).value();
             db.get('endNodes').push({
                 vendorThingID: endNodeVendorThingID,
                 accessToken: JSON.parse(body).accessToken,
                 endNodeThingID: JSON.parse(body).endNodeThingID
-            }).value()
+            }).value();
+        }
         deferred.resolve(JSON.parse(body))
     });
 
@@ -106,7 +109,7 @@ export function updateEndnodeState(ownerToken, endNodeThingID, states) {
             'content-type': 'application/json'
         },
         body: JSON.stringify(states)
-    }
+    };
     request(options, (error, response, body) => {
         if (error) deferred.reject(new Error(error));
         if (response.statusCode !== 204) deferred.reject(body);
@@ -115,7 +118,7 @@ export function updateEndnodeState(ownerToken, endNodeThingID, states) {
     return deferred.promise
 }
 
-// TODO update endnode connectivity
+// update endnode connectivity
 export function updateEndnodeConnectivity(ownerToken: string, endNodeThingID: string, online: boolean) {
     let gatewayThingID = db.get('gateway.thingID').value();
     let deferred = Q.defer()

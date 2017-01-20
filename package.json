@@ -1,6 +1,6 @@
 {
   "name": "kii-gateway-agent",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "private": false,
   "description": "a nodejs kii gateway agent module",
   "main": "lib/index.js",
