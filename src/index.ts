@@ -1,18 +1,18 @@
 /// <reference types="node" />
 
 import request = require('request');
-import mqtt = require('mqtt');
+// import mqtt = require('mqtt');
 import Q = require('q');
 import low = require('lowdb');
 import fs = require('fs');
 
 (function () {
-    const dir = './resource';
+    var dir = './resource';
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
     }
 })();
-const db = new low('./resource/db.json');
+var db = new low('./resource/db.json');
 
 export let appID: string;
 export let appKey: string;
@@ -157,46 +157,46 @@ export function detectEndnodeOnboardingStatus(endNodeVendorThingID: string): boo
 }
 
 // mqtt
-export function startCommandReceiver(chainInput) {
-    let deferred = Q.defer()
-    let gatewayInfo = chainInput.gatewayInfo
-    let mqttEndpoint = gatewayInfo.mqttEndpoint;
-    let option = {
-        'port': mqttEndpoint.portTCP,
-        'clientId': mqttEndpoint.mqttTopic,
-        'username': mqttEndpoint.username,
-        'password': mqttEndpoint.password,
-        'reconnectPeriod': 55000,
-        'keepalive': 60
-    }
-    console.log(mqttEndpoint)
-    let client = mqtt.connect('tcp://' + mqttEndpoint.host, option);
-    client.on('connect', connack => {
-        if (!connack.sessionPresent) {
-            client.subscribe(mqttEndpoint.mqttTopic, {
-                qos: 0,
-                retain: false
-            }, (err, granted) => {
-                if (err) deferred.reject(err)
-            });
-        } else {
-            throw new Error('error connecting to MQTT broker')
-        }
-    })
-    client.on('error', error => {
-        throw new Error(error)
-    })
-    client.on('message', (topic, message, packet) => {
-        let i;
-        let messageStr = '';
-        for (i = 0; i < message.length; i++) {
-            messageStr += '%' + ('0' + message[i].toString(16)).slice(-2);
-        }
-        messageStr = decodeURIComponent(messageStr);
-        this.messageHandler(messageStr)
-    })
-}
+// export function startCommandReceiver(chainInput) {
+//     let deferred = Q.defer()
+//     let gatewayInfo = chainInput.gatewayInfo
+//     let mqttEndpoint = gatewayInfo.mqttEndpoint;
+//     let option = {
+//         'port': mqttEndpoint.portTCP,
+//         'clientId': mqttEndpoint.mqttTopic,
+//         'username': mqttEndpoint.username,
+//         'password': mqttEndpoint.password,
+//         'reconnectPeriod': 55000,
+//         'keepalive': 60
+//     }
+//     console.log(mqttEndpoint)
+//     let client = mqtt.connect('tcp://' + mqttEndpoint.host, option);
+//     client.on('connect', connack => {
+//         if (!connack.sessionPresent) {
+//             client.subscribe(mqttEndpoint.mqttTopic, {
+//                 qos: 0,
+//                 retain: false
+//             }, (err, granted) => {
+//                 if (err) deferred.reject(err)
+//             });
+//         } else {
+//             throw new Error('error connecting to MQTT broker')
+//         }
+//     })
+//     client.on('error', error => {
+//         throw new Error(error)
+//     })
+//     client.on('message', (topic, message, packet) => {
+//         let i;
+//         let messageStr = '';
+//         for (i = 0; i < message.length; i++) {
+//             messageStr += '%' + ('0' + message[i].toString(16)).slice(-2);
+//         }
+//         messageStr = decodeURIComponent(messageStr);
+//         this.messageHandler(messageStr)
+//     })
+// }
 
-export function setOnCommandMessage(messageHandler) {
-    this.messageHandler = messageHandler
-}
+// export function setOnCommandMessage(messageHandler) {
+//     this.messageHandler = messageHandler
+// }
