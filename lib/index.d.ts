@@ -7,5 +7,3 @@ export declare function onboardEndnodeByOwner(ownerToken: any, ownerID: any, end
 export declare function updateEndnodeState(ownerToken: any, endNodeThingID: any, states: any): any;
 export declare function updateEndnodeConnectivity(ownerToken: string, endNodeThingID: string, online: boolean): any;
 export declare function detectEndnodeOnboardingStatus(endNodeVendorThingID: string): boolean;
-export declare function startCommandReceiver(chainInput: any): void;
-export declare function setOnCommandMessage(messageHandler: any): void;
